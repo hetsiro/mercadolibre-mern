@@ -16,12 +16,17 @@ exports.getProducts = async (req, res) => {
     const skip = (page - 1) * limit;
 
     // Retorna la cantidad de productos que cumplan con el nombre y categoría
-    const totalProducts = await Product.countDocuments({
+    const totalCategoryProducts = await Product.countDocuments({
       title: { $regex: searchQuery, $options: 'i' },
       category: { $regex: unMappedCategory, $options: 'i' },
     });
 
-    // Retorna todos los productos que cumplan con el nombre y la categoría
+    // Retorna la cantidad de productos que cumplan con el nombre
+    const totalProducts = await Product.countDocuments({
+      title: { $regex: searchQuery, $options: 'i' },
+    });
+
+    // Retorna todos los productos que cumplan con el nombre
     const allProducts = await Product.find({
       title: { $regex: searchQuery, $options: 'i' },
     });
@@ -34,6 +39,7 @@ exports.getProducts = async (req, res) => {
 
     // Calcula el total de páginas de los productos que cumplan con el nombre y la categoría
     const totalPages = Math.ceil(totalProducts / limit);
+    const totalCategoryPages = Math.ceil(totalCategoryProducts / limit);
 
     // Se almacenan las categorías en el formato [{title: 'fragrances', count: 3} ...] de mayor a menor según la cantidad
     const categories = [];
@@ -67,10 +73,12 @@ exports.getProducts = async (req, res) => {
 
     res.json({
       mappedCategories,
+      totalProducts,
+      totalCategoryProducts,
+      totalPages,
+      totalCategoryPages,
       page,
       limit,
-      totalProducts,
-      totalPages,
       products,
     });
   } catch (error) {
