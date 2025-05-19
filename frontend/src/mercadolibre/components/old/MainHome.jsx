@@ -1,7 +1,5 @@
 import { Box } from '@mui/material'
 import { FormHome } from './FormHome'
-import { Carousel } from './Carousel';
-
 export const MainHome = () => {
     return (
         <>
@@ -15,8 +13,7 @@ export const MainHome = () => {
                     height: '100%'
                 }}
             >
-                {/* <FormHome /> */}
-                
+                <FormHome />
             </Box>
         </>
     )

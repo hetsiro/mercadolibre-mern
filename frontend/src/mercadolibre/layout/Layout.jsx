@@ -4,17 +4,19 @@ export const Layout = ({ children }) => {
     return (
         <Box
             sx={{
-                backgroundColor: '#f7f9fb'
+                backgroundColor: '#f7f9fb',
+                minWidth: '320px',
             }}
         >
             <Box
                 sx={{
                     display: 'flex',
+                    minHeight: { xs: 'calc(100vh - 56px)' , sm:'calc(100vh - 64px)'},
+                    py: 2,
                     flexDirection: 'column',
                     alignItems: 'center',
-                    minHeight: 'calc(100vh - 64px)',
                     margin: '0 auto',
-                    width: '95%',
+                    width: '90%',
                     maxWidth: '1280px'
                 }}
             >

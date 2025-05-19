@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { startSearchingProducts } from "../../store/mercadolibre/thunks";
 import { useSearchParams } from "react-router";
-import { Header, MainSearch } from "../components";
+import { MainSearch } from "../components";
 import { Layout } from "../layout";
 
 export const SearchPage = () => {
@@ -20,7 +20,6 @@ export const SearchPage = () => {
   return (
     <>
       <Layout>
-        {/* <Header /> */}
         <MainSearch />
       </Layout>
     </>

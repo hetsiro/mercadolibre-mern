@@ -5,7 +5,7 @@ import { startSearchingProducts } from "../../../store/mercadolibre/thunks";
 
 export const PaginationSearch = () => {
 
-    const { totalPages, search, page } = useSelector((state) => state.mercadolibre);
+    const { totalCategoryPages, search, page } = useSelector((state) => state.mercadolibre);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -19,11 +19,10 @@ export const PaginationSearch = () => {
     return (
         <Pagination
             page={page}
-            count={totalPages}
+            count={totalCategoryPages}
             variant="outlined" color="primary"
             size="large"
             siblingCount={0}
-            sx={{ mb: 4 }}
             onChange={handleChangePage} />
     )
 }

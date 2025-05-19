@@ -15,6 +15,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router';
 import { useRef } from 'react';
+import { ButtonBase } from '@mui/material';
 
 const Search = styled('form')(({ theme }) => ({
     position: 'relative',
@@ -59,9 +60,11 @@ export default function NavBar() {
     const navigate = useNavigate();
     const inputRef = useRef();
 
-    const handleSubmit = ( event ) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        navigate(`/search/?q=${inputRef.current.value}`);
+        const inputSearch = inputRef.current.value;
+        if( inputSearch === '' ) return;
+        navigate(`/search/?q=${inputSearch}`);
     }
 
     const handleNavigateToHome = () => {
@@ -141,30 +144,44 @@ export default function NavBar() {
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, minWidth: '320px' }}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
-                        sx={{ backgroundColor: 'primary.ultraLight', borderRadius: '100%', display: { xs: 'none', sm: 'inline-flex'}}}
-                        onClick={ handleNavigateToHome }
+                        sx={{
+                            backgroundColor: 'primary.ultraLight',
+                            borderRadius: '100%',
+                            display: 'inline-flex',
+                            mr: 2
+                        }}
+                        onClick={handleNavigateToHome}
                     >
                         <Box
                             component='img'
                             src='/van.png'
-                            sx={{ height: '32px'}}
+                            sx={{
+                                height: { xs: '24px' , sm: '32px' },
+                            }}
                         />
                     </IconButton>
-                    <Typography
-                        variant="h5"
-                        fontWeight={700}
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block'}, color: 'white', mx: 3}}
+                    <ButtonBase
+                        onClick={ handleNavigateToHome }
                     >
-                        MercadoLibre
-                    </Typography>
+                        <Typography
+                            variant="h5"
+                            fontWeight={700}
+                            noWrap
+                            component="div"
+                            sx={{
+                                display: { xs: 'none', sm: 'block' },
+                                color: 'white', mx: 3
+                            }}
+                        >
+                            MercadoLibre
+                        </Typography>
+                    </ButtonBase>
                     <Search
-                        onSubmit={ handleSubmit }
+                        onSubmit={handleSubmit}
                     >
                         <SearchIconWrapper>
                             <SearchIcon />

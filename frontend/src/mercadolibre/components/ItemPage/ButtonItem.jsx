@@ -5,13 +5,8 @@ export const ButtonItem = () => {
         <Button
             variant='contained'
             color="secondary"
+            size="large"
             sx={{
-                width: '100%',
-                // maxWidth: 600,
-                height: '80px',
-                borderRadius: 10,
-                // my: 6,
-                fontSize: 28,
                 fontWeight: 900,
                 color: 'white'
             }}>Añadir al carrito

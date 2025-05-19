@@ -7,8 +7,11 @@ const initialState = {
     search: '',
     totalPages: [],
     totalProducts: 0,
+    totalCategoryProducts: 0,
+    totalCategoryPages: 0,
     page: 1,
-    isLoading: true
+    isLoading: false,
+    firstLoading: true,
 }
 
 const mercadolibreSlice = createSlice({
@@ -23,11 +26,14 @@ const mercadolibreSlice = createSlice({
     },
     updateItemsSearched: (state, { payload }) => {
         state.totalPages = payload.totalPages;
+        state.totalCategoryPages = payload.totalCategoryPages;
         state.totalProducts = payload.totalProducts;
+        state.totalCategoryProducts = payload.totalCategoryProducts;
         state.page = payload.page;
         state.itemsSearched = payload.products;
         state.categories = payload.mappedCategories;
         state.isLoading = false;
+        if(state.firstLoading) state.firstLoading = false;
     },
     setActualItem: (state, { payload }) => {
         state.actualItem = payload;
@@ -38,9 +44,12 @@ const mercadolibreSlice = createSlice({
     disableLoading: (state) => {
         state.isLoading = false;
     },
+    disableFirstLoading: (state) => {
+        state.firstLoading = false;
+    },
   }
 });
 
-export const { uploadItems, updateSearch, updatePage, updateItemsSearched, setActualItem, setLoading, disableLoading } = mercadolibreSlice.actions
+export const { uploadItems, updateSearch, updatePage, updateItemsSearched, setActualItem, setLoading, disableLoading, disableFirstLoading } = mercadolibreSlice.actions
 
 export default mercadolibreSlice.reducer

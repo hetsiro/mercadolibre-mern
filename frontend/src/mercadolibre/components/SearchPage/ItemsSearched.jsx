@@ -40,7 +40,8 @@ export const ItemsSearched = () => {
 
                         <ButtonBase
                             sx={{
-                                padding: 4,
+                                paddingX: { xs: 2, sm: 4 },
+                                paddingY: { xs: 4, sm: 4 },
                             }}
                             onClick={() => handleShowItem(product)}
                         >
@@ -52,7 +53,7 @@ export const ItemsSearched = () => {
                                 sx={{ width: '100%' }}
                             >
                                 <Grid
-                                    size={5}
+                                    size={{ xs: 6, sm: 5 }}
                                 >
                                     <Box
                                         component='img'
@@ -69,7 +70,7 @@ export const ItemsSearched = () => {
                                     </Box>
                                 </Grid>
                                 <Grid
-                                    size={7}
+                                    size={{ xs: 6, sm: 7 }}
                                     display='flex'
                                     justifyContent='flex-start'
                                     textAlign='start'
@@ -81,7 +82,17 @@ export const ItemsSearched = () => {
                                         flexDirection='column'
                                         gap={1}
                                     >
-                                        <Typography variant='h6' fontWeight={700}>{product.title}</Typography>
+                                        <Typography
+                                            variant='h6'
+                                            fontWeight={700}
+                                            sx={{
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: { xs: 1, sm: 2 },
+                                                WebkitBoxOrient: 'vertical',
+                                                overflow: 'hidden',
+                                                fontSize: { xs: '1rem', sm: '1.5rem' }
+                                            }}
+                                        >{product.title}</Typography>
                                         <Box
                                             component='li'
                                             sx={{
@@ -89,33 +100,36 @@ export const ItemsSearched = () => {
                                                 px: 1,
                                                 py: 0.5,
                                                 borderRadius: 2,
-                                                width: 'fit-content'
+                                                width: 'fit-content',
                                             }}>
                                             <Typography
                                                 variant="caption"
                                                 fontWeight={500}
-                                                sx={{
-                                                    width: 'auto'
-                                                }}
                                             >{normalizeCategory(product.category)}
                                             </Typography>
                                         </Box>
                                         <Typography sx={{
                                             display: '-webkit-box',
-                                            WebkitLineClamp: 3,       // máximo 3 líneas
+                                            WebkitLineClamp: { xs: 2, sm: 3 },       // máximo 3 líneas
                                             WebkitBoxOrient: 'vertical',
                                             overflow: 'hidden',
+                                            fontSize: { xs: '0.875rem', sm: '1rem' }
                                         }} variant='body1' textAlign='justify' >{product.description}</Typography>
-
                                     </Box>
                                     <Box
                                         display='flex'
-                                        flexDirection='row'
+                                        flexDirection={{ xs: 'column-reverse', sm: 'row' }}
                                         justifyContent='flex-start'
-                                        alignItems='center'
+                                        alignItems={{ xs: 'flex-start', sm: 'center' }}
                                         gap={2}
                                     >
-                                        <Typography variant='h6' fontWeight={700}>{product.price}$</Typography>
+                                        <Typography
+                                            variant='h6'
+                                            fontWeight={700}
+                                            sx={{
+                                                fontSize: { xs: '1.25rem', sm: '1.5rem' }
+                                            }}
+                                        >{product.price}$</Typography>
                                         <Rating name="read-only" value={product.rating} precision={0.5} readOnly />
                                     </Box>
                                 </Grid>

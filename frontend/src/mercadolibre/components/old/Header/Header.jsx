@@ -3,7 +3,7 @@ import { Box, FormControl, IconButton, InputAdornment, OutlinedInput } from "@mu
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
-import { startSearchingProducts } from "../../../store/mercadolibre/thunks"
+import { startSearchingProducts } from "../../../../store/mercadolibre/thunks"
 
 export const Header = () => {
 

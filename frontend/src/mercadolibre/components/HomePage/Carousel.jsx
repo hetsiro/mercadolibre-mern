@@ -17,7 +17,7 @@ export const Carousel = () => {
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 2000,
         pauseOnHover: true,
         responsive: [
@@ -34,7 +34,7 @@ export const Carousel = () => {
                 }
             },
             {
-                breakpoint: 480,
+                breakpoint: 540,
                 settings: {
                     slidesToShow: 1,
                 }
@@ -49,7 +49,7 @@ export const Carousel = () => {
     const handleNavigateToProduct = (item) => {
         navigate(`/item/${item}`)
     }
-
+    
     useEffect(() => {
         dispatch(startSearchingProducts('apple'));
     }, [])
@@ -66,7 +66,8 @@ export const Carousel = () => {
                 boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.25)',
                 gap: 2,
                 p: 6,
-                margin: 'auto 0'
+                margin: 'auto 0',
+                minWidth: '288px'
             }}
         >
             <Typography variant="h4" fontWeight={500} >
@@ -86,7 +87,7 @@ export const Carousel = () => {
                                 sx={{
                                     display: 'flex',
                                     height: '100%',
-                                    py: 1,
+                                    p: 1,
                                 }}
                             >
                                 <Card

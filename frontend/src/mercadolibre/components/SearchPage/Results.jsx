@@ -1,4 +1,4 @@
-import { Box, Button, ButtonBase, InputBase, Typography } from "@mui/material"
+import { Box, ButtonBase, Typography } from "@mui/material"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { startSearchingProducts } from "../../../store/mercadolibre/thunks"
@@ -13,7 +13,7 @@ export const Results = () => {
     const [viewMore, setViewMore] = useState(true)
 
     const handleViewMore = () => {
-        setViewMore(( viewMore ) => !viewMore )
+        setViewMore((viewMore) => !viewMore)
     }
 
     const handleFilterCategory = (category) => {
@@ -39,7 +39,7 @@ export const Results = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                my: 4,
+                mb: 2,
                 p: 4,
                 gap: 4,
                 width: '100%',
@@ -49,7 +49,7 @@ export const Results = () => {
             }}
         >
             <Box component='ul' display='flex' flexDirection='column' gap={0}>
-                <Typography component='li' fontSize={20} variant='body1'><strong>{totalProducts}</strong> Resultados de <strong>{search}</strong></Typography>
+                <Typography component='li' fontSize={20} variant='body1'><strong>{totalProducts}</strong> Resultados de <strong>"{search}"</strong></Typography>
             </Box>
 
             {categories.length !== 0 &&
@@ -89,18 +89,18 @@ export const Results = () => {
                         })
                     }
                     {categories.length > 2 &&
-                    <ButtonBase onClick={ handleViewMore }>
-                        <Typography variant="body1" sx={{
-                            backgroundColor: 'secondary.main',
-                            height: '56px',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            px: 3,
-                            borderRadius: 2,
-                            fontWeight: 500
-                             }}>{ viewMore ? '...' : 'View less...'} </Typography>
-                    </ButtonBase>
+                        <ButtonBase onClick={handleViewMore}>
+                            <Typography variant="body1" sx={{
+                                backgroundColor: 'secondary.main',
+                                height: '56px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                px: 3,
+                                borderRadius: 2,
+                                fontWeight: 500
+                            }}>{viewMore ? '...' : 'View less...'} </Typography>
+                        </ButtonBase>
                     }
                 </Box>
             }

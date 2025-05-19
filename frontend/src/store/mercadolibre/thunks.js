@@ -4,7 +4,7 @@ import { disableLoading, setActualItem, setLoading, updateItemsSearched, updateS
 
 export const startSearchingProducts = (search, page, category = '') => {
 
-  const url =`${API_URL}/api/products?q=${search}&page=${page}&category=${category}`
+  const url = `${API_URL}/api/products?q=${search}&page=${page}&category=${category}`
 
   return async (dispatch) => {
     dispatch(setLoading());
@@ -34,6 +34,5 @@ export const startSettingActualProduct = (id) => {
         dispatch(disableLoading());
       }, 1000);
     })
-
   }
 }

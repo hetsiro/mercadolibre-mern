@@ -20,7 +20,7 @@ export const MainItem = () => {
                 boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)',
                 width: '100%',
                 margin: 'auto 0',
-                my: 4,
+                minWidth: '288px'
             }}
         >
             <Box
@@ -51,7 +51,6 @@ export const MainItem = () => {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 gap: 2,
-                                // m: '0 auto',
                             }}
 
                         >
@@ -121,7 +120,7 @@ export const MainItem = () => {
                                 </Typography>
                             </Box>
                             <Typography variant='h6' fontWeight={700} >{actualItem.price}$</Typography>
-                            <Box display='flex' flexDirection='row' alignItems='center' justifyContent='space-between' width='100%'>
+                            <Box display='flex' flexDirection={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'flex-start', sm: 'center' }} justifyContent='space-between' width='100%'>
                                 <Typography variant='subtitle1' >{actualItem.stock} Disponibles</Typography>
                                 <Rating name="read-only" value={actualItem.rating} precision={0.5} readOnly />
                             </Box>

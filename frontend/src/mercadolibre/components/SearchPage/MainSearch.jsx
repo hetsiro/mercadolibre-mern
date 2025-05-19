@@ -1,7 +1,5 @@
 import { Box } from '@mui/material'
-import { ItemsSearched } from './ItemsSearched'
-import { Results } from './Results'
-import { PaginationSearch } from './Pagination'
+import { Results, ItemsSearched, PaginationSearch } from '../'
 
 export const MainSearch = () => {
     return (
