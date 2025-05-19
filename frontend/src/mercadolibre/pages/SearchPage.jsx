@@ -10,18 +10,19 @@ export const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
 
+  const query = searchParams.get('q');
+  const queryPage = parseInt(searchParams.get('page')) || 1;
+
   useEffect(() => {
-    const query = searchParams.get('q');
-    const queryPage = parseInt(searchParams.get('page')) || 1;
     dispatch(startSearchingProducts(query, queryPage));
-  }, [])
+  }, [query])
 
   return (
     <>
-        <Layout>
-          <Header />
-          <MainSearch />
-        </Layout>
+      <Layout>
+        {/* <Header /> */}
+        <MainSearch />
+      </Layout>
     </>
   );
 };

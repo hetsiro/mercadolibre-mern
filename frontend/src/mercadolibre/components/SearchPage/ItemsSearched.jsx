@@ -17,17 +17,31 @@ export const ItemsSearched = () => {
         <Box
             display='flex'
             flexDirection='column'
+            sx={{
+                backgroundColor: 'white',
+                borderRadius: 5,
+                boxShadow: '0px 0px 3px rgba(0, 0, 0, 0.25)',
+                width: '100%'
+
+            }}
         >
-            {itemsSearched.map((product) => {
+            {itemsSearched.map((product, index) => {
                 return (
                     <Fragment
                         key={product.id}
                     >
-                        <Divider
-                            sx={{ width: '100%' }}
-                        />
+                        {index > 0 &&
+                            < Divider
+                                sx={{
+                                    width: '100%',
+                                }}
+                            />
+                        }
+
                         <ButtonBase
-                            sx={{ paddingY: 4 }}
+                            sx={{
+                                padding: 4,
+                            }}
                             onClick={() => handleShowItem(product)}
                         >
                             <Grid
@@ -47,7 +61,7 @@ export const ItemsSearched = () => {
                                         sx={{
                                             maxWidth: '300px',
                                             width: '100%',
-                                            backgroundColor: 'secondary.ultraLight',
+                                            backgroundColor: 'primary.ultraLight',
                                             borderRadius: 5,
                                             p: 1
                                         }}
@@ -55,7 +69,6 @@ export const ItemsSearched = () => {
                                     </Box>
                                 </Grid>
                                 <Grid
-                                    component='li'
                                     size={7}
                                     display='flex'
                                     justifyContent='flex-start'

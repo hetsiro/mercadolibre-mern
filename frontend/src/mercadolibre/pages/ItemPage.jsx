@@ -19,9 +19,8 @@ export const ItemPage = () => {
     <>
       <Loading />
       <Layout >
-        <Header />
+        {/* <Header /> */}
         <MainItem />
-        <ButtonItem />
       </Layout>
     </>
   )

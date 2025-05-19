@@ -1,4 +1,4 @@
-import { Box, ButtonBase, Typography } from "@mui/material"
+import { Box, Button, ButtonBase, InputBase, Typography } from "@mui/material"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { startSearchingProducts } from "../../../store/mercadolibre/thunks"
@@ -10,6 +10,11 @@ export const Results = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isSelected, setIsSelected] = useState(null);
+    const [viewMore, setViewMore] = useState(true)
+
+    const handleViewMore = () => {
+        setViewMore(( viewMore ) => !viewMore )
+    }
 
     const handleFilterCategory = (category) => {
 
@@ -28,7 +33,21 @@ export const Results = () => {
     }
 
     return (
-        <>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                my: 4,
+                p: 4,
+                gap: 4,
+                width: '100%',
+                backgroundColor: 'white',
+                borderRadius: 5,
+                boxShadow: '0px 0px 3px rgba(0, 0, 0, 0.25)'
+            }}
+        >
             <Box component='ul' display='flex' flexDirection='column' gap={0}>
                 <Typography component='li' fontSize={20} variant='body1'><strong>{totalProducts}</strong> Resultados de <strong>{search}</strong></Typography>
             </Box>
@@ -39,35 +58,52 @@ export const Results = () => {
                     sx={{
                         display: 'flex',
                         flexWrap: 'wrap',
-                        justifyContent:' center',
+                        justifyContent: ' center',
                         gap: 2,
                         listStyle: 'none',
                     }}>
                     {
-                        categories.map((category) => (
-                            <ButtonBase key={category.title}>
-                                <Box
-                                    onClick={() => handleFilterCategory(category.title)}
-                                    component='li'
-                                    sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        bgcolor: isSelected === category.title ? 'secondary.light' : 'primary.light',
-                                        px: 2,
-                                        py: 1,
-                                        borderRadius: 2,
-                                    }}>
-                                    <Typography variant="body2" fontWeight={500} sx={{
-                                    }}>{category.title}</Typography>
-                                    <Typography variant="body2" fontWeight={500} sx={{
-                                    }}>{category.count}</Typography>
-                                </Box>
-                            </ButtonBase>
-                        ))
+                        categories.map((category, index) => {
+                            if (index > 2 && viewMore) return;
+                            return (
+                                <ButtonBase key={category.title}>
+                                    <Box
+                                        onClick={() => handleFilterCategory(category.title)}
+                                        component='li'
+                                        sx={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            bgcolor: isSelected === category.title ? 'primary.light' : 'primary.ultraLight',
+                                            px: 2,
+                                            py: 1,
+                                            borderRadius: 2,
+                                        }}>
+                                        <Typography variant="body2" fontWeight={500} sx={{
+                                        }}>{category.title}</Typography>
+                                        <Typography variant="body2" fontWeight={500} sx={{
+                                        }}>{category.count}</Typography>
+                                    </Box>
+                                </ButtonBase>
+                            )
+                        })
+                    }
+                    {categories.length > 2 &&
+                    <ButtonBase onClick={ handleViewMore }>
+                        <Typography variant="body1" sx={{
+                            backgroundColor: 'secondary.main',
+                            height: '56px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            px: 3,
+                            borderRadius: 2,
+                            fontWeight: 500
+                             }}>{ viewMore ? '...' : 'View less...'} </Typography>
+                    </ButtonBase>
                     }
                 </Box>
             }
-        </>
+        </Box>
     )
 }

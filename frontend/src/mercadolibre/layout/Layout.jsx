@@ -3,14 +3,23 @@ import { Box } from "@mui/material"
 export const Layout = ({ children }) => {
     return (
         <Box
-            display='flex'
-            flexDirection='column'
-            alignItems='center'
-            minHeight='100vh'
-            width='95%'
-            margin='0 auto'
+            sx={{
+                backgroundColor: '#f7f9fb'
+            }}
         >
-            {children}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    minHeight: 'calc(100vh - 64px)',
+                    margin: '0 auto',
+                    width: '95%',
+                    maxWidth: '1280px'
+                }}
+            >
+                {children}
+            </Box>
         </Box>
     )
 }

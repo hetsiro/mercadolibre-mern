@@ -1,6 +1,7 @@
 import { Box, Rating, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { normalizeCategory } from '../../helpers/normalizeCategory'
+import { ButtonItem } from './ButtonItem'
 
 export const MainItem = () => {
 
@@ -14,103 +15,121 @@ export const MainItem = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                flexGrow: 1,
-                gap: 6,
-                width: '80%'
+                backgroundColor: 'white',
+                borderRadius: 5,
+                boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)',
+                width: '100%',
+                margin: 'auto 0',
+                my: 4,
             }}
         >
-
-            {actualItem &&
-                <Box
-                    component='article'
-                    display='flex'
-                    flexDirection='column'
-                    gap={6}
-                    >
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '60%',
+                    gap: 4,
+                    my: 4,
+                }}
+            >
+                {actualItem &&
                     <Box
-                        component='figure'
                         sx={{
+                            component: 'article',
                             display: 'flex',
-                            flexDirection: 'row',
                             justifyContent: 'center',
-                            alignItems: 'center',
-                            gap: 2,
+                            alignContent: 'center',
+                            flexDirection: 'column',
+                            gap: 6
                         }}
-
                     >
                         <Box
-                            component='img'
-                            src={actualItem.thumbnail}
-                            sx={{
-                                width: '100%',
-                                maxWidth: '300px',
-                                minWidth: '150px',
-                                borderRadius: 5,
-                                backgroundColor: 'secondary.ultraLight',
-                                p: 1
-                            }}
-                        >
-                        </Box>
-                        <Box
+                            component='figure'
                             sx={{
                                 display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
+                                flexDirection: 'row',
                                 justifyContent: 'center',
-                                gap: 1
+                                alignItems: 'center',
+                                gap: 2,
+                                // m: '0 auto',
                             }}
+
                         >
-                            {actualItem.images.map((image) => {
-                                return (
-                                    <Box
-                                        component='img'
-                                        key={image}
-                                        src={image}
-                                        sx={{
-                                            borderRadius: 5,
-                                            backgroundColor: 'primary.light',
-                                            width: '100%',
-                                            maxWidth: '180px',
-                                            minWidth: '80px',
-                                            p: 1
-                                        }}
-                                    >
-                                    </Box>
-                                )
-                            })}
-                        </Box>
-                    </Box>
-
-
-                    <Box display='flex' flexDirection='column' justifyContent='center' gap={1} component='ul'>
-                        <Typography variant='h5' fontWeight={700} >{actualItem.title}</Typography>
-                        <Box
-                            component='li'
-                            sx={{
-                                backgroundColor: 'primary.light',
-                                px: 2,
-                                py: 0.5,
-                                borderRadius: 2,
-                                width: 'fit-content'
-                            }}>
-                            <Typography
-                                variant="caption"
-                                fontWeight={500}
+                            <Box
+                                component='img'
+                                src={actualItem.thumbnail}
                                 sx={{
-                                    width: 'auto'
+                                    width: '100%',
+                                    height: '100%',
+                                    maxWidth: '300px',
+                                    minWidth: '150px',
+                                    borderRadius: 5,
+                                    backgroundColor: 'primary.ultraLight',
+                                    p: 1
                                 }}
-                            >{normalizeCategory(actualItem.category)}
-                            </Typography>
+                            >
+                            </Box>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: 1,
+                                }}
+                            >
+                                {actualItem.images.map((image) => {
+                                    return (
+                                        <Box
+                                            component='img'
+                                            key={image}
+                                            src={image}
+                                            sx={{
+                                                borderRadius: 5,
+                                                backgroundColor: 'secondary.ultraLight',
+                                                width: '100%',
+                                                maxWidth: '180px',
+                                                minWidth: '80px',
+                                                p: 1
+                                            }}
+                                        >
+                                        </Box>
+                                    )
+                                })}
+                            </Box>
                         </Box>
-                        <Typography variant='h6' fontWeight={700} >{actualItem.price}$</Typography>
-                        <Box display='flex' flexDirection='row' alignItems='center' justifyContent='space-between' width='100%'>
-                            <Typography variant='subtitle1' >{actualItem.stock} Disponibles</Typography>
-                            <Rating name="read-only" value={actualItem.rating} precision={0.5} readOnly />
-                        </Box>
-                        <Typography variant='body1' textAlign='justify' >{actualItem.description}</Typography>
-                    </Box>
-                </Box>}
 
+
+                        <Box display='flex' flexDirection='column' justifyContent='center' gap={1} component='ul'>
+                            <Typography variant='h5' fontWeight={700} >{actualItem.title}</Typography>
+                            <Box
+                                component='li'
+                                sx={{
+                                    backgroundColor: 'primary.light',
+                                    px: 2,
+                                    py: 0.5,
+                                    borderRadius: 2,
+                                    width: 'fit-content'
+                                }}>
+                                <Typography
+                                    variant="caption"
+                                    fontWeight={500}
+                                    sx={{
+                                        width: 'auto'
+                                    }}
+                                >{normalizeCategory(actualItem.category)}
+                                </Typography>
+                            </Box>
+                            <Typography variant='h6' fontWeight={700} >{actualItem.price}$</Typography>
+                            <Box display='flex' flexDirection='row' alignItems='center' justifyContent='space-between' width='100%'>
+                                <Typography variant='subtitle1' >{actualItem.stock} Disponibles</Typography>
+                                <Rating name="read-only" value={actualItem.rating} precision={0.5} readOnly />
+                            </Box>
+                            <Typography variant='body1' textAlign='justify' >{actualItem.description}</Typography>
+                        </Box>
+                    </Box>}
+                <ButtonItem />
+            </Box>
         </Box >
 
 

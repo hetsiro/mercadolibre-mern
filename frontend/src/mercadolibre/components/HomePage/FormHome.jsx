@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { Search } from "@mui/icons-material";
 
-import { Button, FormControl, IconButton, OutlinedInput, InputAdornment, Typography } from "@mui/material";
+import { Button, FormControl, IconButton, OutlinedInput, InputAdornment, Typography, Box } from "@mui/material";
 
 export const FormHome = () => {
 
@@ -19,23 +19,57 @@ export const FormHome = () => {
         <FormControl
             component='form'
             sx={{
+                width: { xs: '80%', md: '40%' },
                 display: "flex",
+                flexDirection: 'column',
                 justifyContent: "center",
                 alignItems: "center",
                 gap: 4,
-                width: "100%",
             }}
             onSubmit={handleSubmit}
         >
-            <Typography variant="h3" sx={{
-                fontSize: { xs: '4rem', md: '7rem' }
-            }} fontWeight={700} color="white">
-                MercadoLibre
-            </Typography>
+            <Box
+                display='flex'
+                flexDirection='column'
+                alignItems='center'
+                gap={2}
+            >
+                {/* <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: '25%',
+                        height: '100%',
+                        backgroundColor: 'white',
+                    }}
+                >
+                    <Box
+                        component='img'
+                        src='/van.png'
+                        sx={{
+                            width: { xs: 100, md: 200},
+                            height: { xs: 100, md: 200},
+                            p: { xs: 1, md: 2}
+                        }}
+                    />
+                </Box> */}
+                <Typography
+                    variant="h3"
+                    sx={{
+                        color: "white",
+                        fontWeight: 700,
+                        fontSize: { xs: '3rem', md: '5rem' }
+                    }}
+                >
+                    MercadoLibre
+                </Typography>
+            </Box>
+
             <OutlinedInput
                 sx={{
                     backgroundColor: 'white',
-                    fontSize: '28px',
+                    fontSize: { xs: '16px', md: '22px' },
                 }}
                 inputRef={inputRef}
                 endAdornment={
@@ -43,7 +77,7 @@ export const FormHome = () => {
                         <IconButton type='submit'>
                             <Search sx={{
                                 height: '100%',
-                                width: '50px',
+                                width: '40px',
                             }} />
                         </IconButton>
                     </InputAdornment>
@@ -56,13 +90,13 @@ export const FormHome = () => {
                 variant="contained"
                 size="large"
                 sx={{
+                    height: '60px',
                     width: '100%',
-                    maxWidth: 600,
-                    height: '80px',
+                    maxWidth: 200,
                     borderRadius: 10,
-                    fontSize: 28,
+                    fontSize: 20,
                     fontWeight: 900,
-                    color: 'purple'
+                    color: 'primary.ultraLight'
                 }}>
                 Buscar
             </Button>
