@@ -17,12 +17,16 @@ export const PaginationSearch = () => {
     }
 
     return (
-        <Pagination
-            page={page}
-            count={totalCategoryPages}
-            variant="outlined" color="primary"
-            size="large"
-            siblingCount={0}
-            onChange={handleChangePage} />
+        <>
+            {totalCategoryPages > 0 &&
+                <Pagination
+                    page={page}
+                    count={totalCategoryPages}
+                    variant="outlined" color="primary"
+                    size="large"
+                    siblingCount={0}
+                    onChange={handleChangePage} />
+            }
+        </>
     )
 }
