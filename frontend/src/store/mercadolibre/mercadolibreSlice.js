@@ -37,6 +37,7 @@ const mercadolibreSlice = createSlice({
     },
     setActualItem: (state, { payload }) => {
         state.actualItem = payload;
+        if(state.firstLoading) state.firstLoading = false;
     },
     setLoading: (state) => {
         state.isLoading = true;

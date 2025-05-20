@@ -25,7 +25,8 @@ export const PaginationSearch = () => {
                     variant="outlined" color="primary"
                     size="large"
                     siblingCount={0}
-                    onChange={handleChangePage} />
+                    onChange={handleChangePage}
+                />
             }
         </>
     )

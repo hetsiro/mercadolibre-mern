@@ -18,18 +18,19 @@ export const MainItem = () => {
                 backgroundColor: 'white',
                 borderRadius: 5,
                 boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.25)',
-                width: '100%',
+                width: '90%',
                 margin: 'auto 0',
-                minWidth: '288px'
+                maxWidth: '640px',
+                minWidth: '288px',
+                py: 4
             }}
         >
             <Box
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    width: '60%',
+                    width: '90%',
                     gap: 4,
-                    my: 4,
                 }}
             >
                 {actualItem &&
