@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 
-export const Layout = ({ children }) => {
+export const LayoutUp = ({ children }) => {
     return (
         <Box
             sx={{
@@ -15,7 +15,6 @@ export const Layout = ({ children }) => {
                     py: 2,
                     flexDirection: 'column',
                     alignItems: 'center',
-                    justifyContent: 'center',
                     margin: '0 auto',
                     width: '90%',
                     maxWidth: '1280px'

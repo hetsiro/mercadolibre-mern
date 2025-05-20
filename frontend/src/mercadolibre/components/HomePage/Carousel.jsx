@@ -66,7 +66,6 @@ export const Carousel = () => {
                 boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.25)',
                 gap: 2,
                 p: 6,
-                margin: 'auto 0',
                 minWidth: '288px'
             }}
         >
@@ -77,7 +76,6 @@ export const Carousel = () => {
                 <Box
                     sx={{
                         width: '100%',
-                        // maxWidth: '1024px',
                     }}
                 >
                     <Slider {...settings} ref={sliderRef}>

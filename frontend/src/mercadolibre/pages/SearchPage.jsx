@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { startSearchingProducts } from "../../store/mercadolibre/thunks";
 import { useSearchParams } from "react-router";
 import { MainSearch } from "../components";
-import { Layout } from "../layout";
+import { LayoutUp } from "../layout";
 
 export const SearchPage = () => {
 
@@ -19,9 +19,9 @@ export const SearchPage = () => {
 
   return (
     <>
-      <Layout>
+      <LayoutUp>
         <MainSearch />
-      </Layout>
+      </LayoutUp>
     </>
   );
 };

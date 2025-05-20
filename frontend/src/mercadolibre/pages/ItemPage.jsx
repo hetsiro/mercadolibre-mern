@@ -1,9 +1,9 @@
-import { useDispatch } from "react-redux"
-import { useParams } from "react-router"
-import { useEffect } from "react"
-import { startSettingActualProduct } from "../../store/mercadolibre/thunks"
-import { Loading, MainItem } from "../components"
-import { Layout } from "../layout"
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import { useEffect } from "react";
+import { startSettingActualProduct } from "../../store/mercadolibre/thunks";
+import { Loading, MainItem } from "../components";
+import { LayoutUp } from "../layout";
 
 export const ItemPage = () => {
 
@@ -17,9 +17,9 @@ export const ItemPage = () => {
   return (
     <>
       <Loading />
-      <Layout >
+      <LayoutUp >
         <MainItem />
-      </Layout>
+      </LayoutUp>
     </>
   )
 }
