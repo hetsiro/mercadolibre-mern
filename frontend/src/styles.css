@@ -21,5 +21,6 @@ ul {
 
 .slick-dots li button:before,
 .slick-dots li.slick-active button:before{
+    position: relative;
     color: #0061c7;
 }

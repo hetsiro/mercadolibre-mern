@@ -88,6 +88,7 @@ export const MainItem = () => {
                                                 borderRadius: 5,
                                                 backgroundColor: 'secondary.ultraLight',
                                                 width: '100%',
+                                                minHeight: '80px',
                                                 maxWidth: '180px',
                                                 minWidth: '80px',
                                                 p: 1
@@ -128,7 +129,7 @@ export const MainItem = () => {
                             <Typography variant='body1' textAlign='justify' >{actualItem.description}</Typography>
                         </Box>
                     </Box>}
-                <ButtonItem />
+                <ButtonItem item={actualItem} />
             </Box>
         </Box >
 

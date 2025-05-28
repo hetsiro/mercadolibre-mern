@@ -15,7 +15,7 @@ export const SearchPage = () => {
 
   useEffect(() => {
     dispatch(startSearchingProducts(query, queryPage));
-  }, [query])
+  }, [dispatch, query])
 
   return (
     <>

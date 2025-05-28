@@ -12,7 +12,7 @@ export const ItemPage = () => {
 
   useEffect(() => {
     dispatch(startSettingActualProduct(id));
-  }, [])
+  }, [dispatch, id])
 
   return (
     <>

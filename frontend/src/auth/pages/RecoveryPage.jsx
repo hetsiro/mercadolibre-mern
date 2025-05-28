@@ -1,7 +1,10 @@
-import React from 'react'
+import { AuthLayout } from '../layout/AuthLayout'
+import { RecoveryForm } from '../components/formik/RecoveryForm'
 
 export const RecoveryPage = () => {
   return (
-    <div>RecoveryPage</div>
+    <AuthLayout>
+      <RecoveryForm />
+    </AuthLayout>
   )
 }

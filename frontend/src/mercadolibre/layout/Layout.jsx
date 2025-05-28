@@ -9,6 +9,7 @@ export const Layout = ({ children }) => {
             }}
         >
             <Box
+                className='animate__animated animate__fadeIn'
                 sx={{
                     display: 'flex',
                     minHeight: { xs: 'calc(100vh - 56px)' , sm:'calc(100vh - 64px)'},

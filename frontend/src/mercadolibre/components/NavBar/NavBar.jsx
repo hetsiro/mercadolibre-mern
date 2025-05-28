@@ -16,6 +16,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router';
 import { useRef } from 'react';
 import { ButtonBase } from '@mui/material';
+import { Logout } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../store/auth/authSlice';
+import DrawerCart from '../Cart/DrawerCart';
 
 const Search = styled('form')(({ theme }) => ({
     position: 'relative',
@@ -59,11 +63,12 @@ export default function NavBar() {
 
     const navigate = useNavigate();
     const inputRef = useRef();
+    const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const inputSearch = inputRef.current.value;
-        if( inputSearch === '' ) return;
+        if (inputSearch === '') return;
         navigate(`/search/?q=${inputSearch}`);
     }
 
@@ -75,9 +80,6 @@ export default function NavBar() {
 
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const handleProfileMenuOpen = (event) => {
-    };
-
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
@@ -86,23 +88,17 @@ export default function NavBar() {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-        >
-        </Menu>
-    );
+    // const handleDrawerCart = () => {
+    //     return 
+    // }
+
+    const handleLogout = () => {
+        dispatch(logout());
+    }
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <Menu
-            anchorEl={mobileMoreAnchorEl}
             anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
@@ -116,7 +112,7 @@ export default function NavBar() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            <MenuItem onClick={() => { }}>
                 <IconButton
                     size="large"
                     aria-label="show 17 new notifications"
@@ -128,7 +124,7 @@ export default function NavBar() {
                 </IconButton>
                 <p>Cart</p>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
+            <MenuItem onClick={() => { }}>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -139,6 +135,18 @@ export default function NavBar() {
                     <AccountCircle />
                 </IconButton>
                 <p>Profile</p>
+            </MenuItem>
+            <MenuItem onClick={() => { }}>
+                <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <Logout />
+                </IconButton>
+                <p>Logout</p>
             </MenuItem>
         </Menu>
     );
@@ -160,12 +168,12 @@ export default function NavBar() {
                             component='img'
                             src='/van.png'
                             sx={{
-                                height: { xs: '24px' , sm: '32px' },
+                                height: { xs: '24px', sm: '32px' },
                             }}
                         />
                     </IconButton>
                     <ButtonBase
-                        onClick={ handleNavigateToHome }
+                        onClick={handleNavigateToHome}
                     >
                         <Typography
                             variant="h5"
@@ -194,25 +202,22 @@ export default function NavBar() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <DrawerCart />
                         <IconButton
                             size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={17} color="error">
-                                <ShoppingCartIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            edge="end"
                             aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
+                            onClick={() => {}}
                             color="inherit"
                         >
                             <AccountCircle />
+                        </IconButton>
+                        <IconButton
+                            size="large"
+                            aria-label="logout current user"
+                            onClick={ handleLogout }
+                            color="inherit"
+                        >
+                            <Logout />
                         </IconButton>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -230,7 +235,6 @@ export default function NavBar() {
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
-            {renderMenu}
         </Box>
     );
 }

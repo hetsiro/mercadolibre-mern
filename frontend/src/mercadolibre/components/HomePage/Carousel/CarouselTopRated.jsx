@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
-import { startSearchingProducts } from "../../../store/mercadolibre/thunks";
-import { Box, Button, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { startGettingTopRatedProducts } from "../../../../store/mercadolibre/thunks";
+import { Box, Button, Card, CardContent, CardMedia, Rating, Typography } from "@mui/material";
 import { useNavigate } from 'react-router'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-export const Carousel = () => {
+export const CarouselTopRated = () => {
 
     const sliderRef = useRef();
 
@@ -16,8 +16,8 @@ export const Carousel = () => {
         dots: true,
         infinite: true,
         slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
+        slidesToScroll: 3,
+        autoplay: false,
         autoplaySpeed: 2000,
         pauseOnHover: true,
         responsive: [
@@ -28,15 +28,19 @@ export const Carousel = () => {
                 }
             },
             {
-                breakpoint: 720,
+                breakpoint: 900,
                 settings: {
                     slidesToShow: 2,
+                    slidesToScroll: 2,
                 }
             },
             {
-                breakpoint: 540,
+                breakpoint: 600,
                 settings: {
+                    dots: false,
+                    // arrows: false,
                     slidesToShow: 1,
+                    slidesToScroll: 1,
                 }
             }
         ]
@@ -44,15 +48,15 @@ export const Carousel = () => {
     };
 
     const dispatch = useDispatch();
-    const { itemsSearched } = useSelector((state) => state.mercadolibre);
+    const { topRated } = useSelector((state) => state.mercadolibre);
     const navigate = useNavigate();
     const handleNavigateToProduct = (item) => {
         navigate(`/item/${item}`)
     }
     
     useEffect(() => {
-        dispatch(startSearchingProducts('apple'));
-    }, [])
+        dispatch(startGettingTopRatedProducts());
+    }, [dispatch])
 
     return (
         <Box
@@ -65,21 +69,21 @@ export const Carousel = () => {
                 backgroundColor: 'white',
                 boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.25)',
                 gap: 2,
-                p: 6,
+                p: 4,
                 minWidth: '288px'
             }}
         >
-            <Typography variant="h4" fontWeight={500} >
-                Más vendidos
+            <Typography variant="h4" fontWeight={500} sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }} >
+                Top rated
             </Typography>
-            {itemsSearched.length > 0 &&
+            {topRated.length > 0 &&
                 <Box
                     sx={{
                         width: '100%',
                     }}
                 >
                     <Slider {...settings} ref={sliderRef}>
-                        {itemsSearched.map((item) => (
+                        {topRated.map((item) => (
                             <Box
                                 key={item.id}
                                 sx={{
@@ -93,7 +97,8 @@ export const Carousel = () => {
                                         display: 'flex',
                                         flexDirection: 'column',
                                         height: '100%',
-                                        boxShadow: '0px 0px 2px rgba(0, 0, 0, 0.5)',
+                                        boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.25)',
+                                        borderRadius: 5,
                                         p: 2,
                                         gap: 2
                                     }}
@@ -115,8 +120,9 @@ export const Carousel = () => {
                                             flexDirection: 'column',
                                             justifyContent: 'space-between',
                                             height: '100%',
-                                            gap: 2,
-                                            p: 0
+                                            gap: { xs: 1, sm: 2},
+                                            p: '0 !important'
+
                                         }}
                                     >
                                         <Typography
@@ -124,7 +130,7 @@ export const Carousel = () => {
                                             sx={{
                                                 fontSize: '1rem',
                                                 display: '-webkit-box',
-                                                WebkitLineClamp: 2,       // máximo 3 líneas
+                                                WebkitLineClamp: 1,       // máximo 3 líneas
                                                 WebkitBoxOrient: 'vertical',
                                                 overflow: 'hidden',
                                             }}>
@@ -134,7 +140,7 @@ export const Carousel = () => {
                                             variant="body2"
                                             color="text.secondary"
                                             sx={{
-                                                fontSize: '1rem',
+                                                fontSize: { xs: '0.825rem', sm: '1rem' },
                                                 display: '-webkit-box',
                                                 WebkitLineClamp: 3,       // máximo 3 líneas
                                                 WebkitBoxOrient: 'vertical',
@@ -142,15 +148,17 @@ export const Carousel = () => {
                                             }}>
                                             {item.description}
                                         </Typography>
+                                        <Rating name="read-only" value={item.rating} precision={0.5} readOnly />
                                         <Button
                                             onClick={() => handleNavigateToProduct(item.id)}
                                             variant="contained"
                                             sx={{
                                                 fontWeight: 700,
-                                                color: 'white'
+                                                color: 'white',
+                                                my: 3
                                             }}
                                         >
-                                            Ver producto
+                                            View product
                                         </Button>
                                     </CardContent>
                                 </Card>

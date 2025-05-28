@@ -1,5 +1,5 @@
 import { Box, ButtonBase, Typography } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { startSearchingProducts } from "../../../store/mercadolibre/thunks"
 import { useNavigate } from "react-router"
@@ -16,15 +16,21 @@ export const Results = () => {
         setViewMore((viewMore) => !viewMore)
     }
 
+    useEffect(() => {
+      setIsSelected(false);
+    }, [search])
+    
+
     const handleFilterCategory = (category) => {
 
         setIsSelected((isSelected) => {
             const newValue = isSelected === category ? null : category;
             if (newValue === category) {
-                dispatch(startSearchingProducts(search, 1, category));
                 const mappedCategory = category.split(' ').join('-').toLowerCase();
                 navigate(`/search/?q=${search}&page=1&category=${mappedCategory}`);
-            } else {
+                dispatch(startSearchingProducts(search, 1, mappedCategory));
+            } 
+            else {
                 dispatch(startSearchingProducts(search, page));
                 navigate(`/search/?q=${search}&page=${page}`);
             }
@@ -64,7 +70,7 @@ export const Results = () => {
                     }}>
                     {
                         categories.map((category, index) => {
-                            if (index > 2 && viewMore) return;
+                            if (index >= 3 && viewMore) return;
                             return (
                                 <ButtonBase key={category.title}>
                                     <Box
@@ -88,7 +94,7 @@ export const Results = () => {
                             )
                         })
                     }
-                    {categories.length > 2 &&
+                    {categories.length >= 4 &&
                         <ButtonBase onClick={handleViewMore}>
                             <Typography variant="body1" sx={{
                                 backgroundColor: 'secondary.main',
