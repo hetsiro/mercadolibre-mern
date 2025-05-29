@@ -72,20 +72,21 @@ exports.getProducts = async (req, res) => {
     })
 
     res.json({
-      mappedCategories,
       totalProducts,
       totalCategoryProducts,
       totalPages,
       totalCategoryPages,
       page,
       limit,
+      mappedCategories,
       products,
     });
   } catch (error) {
-    res.status(500).json({ message: 'Error al buscar productos', error });
+    res.status(500).json({ message: 'Error while searching for products', error });
   }
 };
 
+// Obtiene la información del producto según el ID
 exports.getProductById = async (req, res) => {
   const { id } = req.params;
 
@@ -93,11 +94,35 @@ exports.getProductById = async (req, res) => {
     const product = await Product.findOne({ id });
 
     if (!product) {
-      return res.status(404).json({ message: 'Producto no encontrado' });
+      return res.status(404).json({ message: 'Product not found' });
     }
 
     res.json(product);
   } catch (error) {
-    res.status(500).json({ message: 'Error al obtener producto por ID', error });
+    res.status(500).json({ message: 'Error while fetching product by id', error });
+  }
+};
+
+// Obtiene el top 10 de productos según el rating
+exports.getTopRatedProducts = async (req, res) => {
+  try {
+
+    const allProducts = await Product.find().sort({ rating: -1 }).limit(10);
+    res.json(allProducts);
+
+  } catch (error) {
+    res.status(500).json({ message: 'Error while fetching best-rated products', error });
+  }
+};
+
+// Funciones extras que se podrían ocupar
+exports.getWorstRatedProducts = async (req, res) => {
+  try {
+
+    const allProducts = await Product.find().sort({ rating: 1 }).limit(10);
+    res.json(allProducts);
+
+  } catch (error) {
+    res.status(500).json({ message: 'Error while fetching best-rated products', error });
   }
 };

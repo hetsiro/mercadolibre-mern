@@ -11,6 +11,7 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/products', require('./routes/products'));
+app.use('/api/auth', require('./routes/auth'));
 
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI)
